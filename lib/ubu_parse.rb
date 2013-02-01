@@ -189,6 +189,7 @@ class UbuParse
 						# They tend to have trailing <br> tags and whitespace
 						description = entry_copy.inner_html
 						description.gsub!(/(<br\s?\/?>\s*)*$/, '')
+						description.gsub!(/^(\s*<br\s?\/?>)*/, '')
 						description.strip!
 						entry[:description] = description
 						# Append it
