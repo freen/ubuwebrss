@@ -12,6 +12,6 @@ class CreateSettings < ActiveRecord::Migration
 
     Setting.create 	:key => 'scrape_interval_minutes',
     				:label => 'Scrape Interval (Minutes)',
-    				:value => '720'
+    				:value => '720' # 12 hours
   end
 end
