@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130210858) do
+ActiveRecord::Schema.define(:version => 20130201045836) do
+
+  create_table "scrape_events", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "settings", :force => true do |t|
     t.string   "key"
@@ -29,8 +34,9 @@ ActiveRecord::Schema.define(:version => 20130130210858) do
     t.string   "href"
     t.text     "description"
     t.string   "artist"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "scrape_event_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

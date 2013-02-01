@@ -6,6 +6,7 @@ class CreateUbuEntries < ActiveRecord::Migration
       t.string :href
       t.text :description
       t.string :artist, {:null => true}
+      t.integer :scrape_event_id
 
       t.timestamps
     end

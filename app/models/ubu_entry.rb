@@ -1,6 +1,8 @@
 class UbuEntry < ActiveRecord::Base
   attr_accessible :type, :artist, :description, :href, :title
 
+  belongs_to :scrape_event
+
   # Constant values also represent the relative priority of each entry type,
   # should multiple be discovered during the same scrape.
 

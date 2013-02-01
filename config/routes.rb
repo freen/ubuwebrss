@@ -1,7 +1,7 @@
 UbuWebRSS::Application.routes.draw do
 
   scope :format => true, :constraints => { :format => 'rss' } do
-    get 'feed/all' => 'feed#entriesAll'
+    get 'feed/all' => 'feed#entries_all'
   end
 
   # The priority is based upon order of creation:
