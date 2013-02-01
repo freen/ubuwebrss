@@ -100,26 +100,28 @@ class UbuParse
 			return uri.to_s
 		end
 
-		def extract_addition_item_after_image( image_node )
-			anchor_node = image_node.next
-			# Fail if the subsequent node is not an <a>
-			return false if anchor_node.name != 'a'
-			entry = {
-				:artist => '',
-				:title => '',
-				:href => normalize_href( anchor_node[:href] )
-			}
-			anchor_node.children.each do |child|
-				case child.name
-				when 'text'
-					entry[:artist] << child.inner_text + ' '
-				when 'font'
-					entry[:title] << child.children.first.inner_text + ' '
+		# FOR OUTERMOST COLUMNS:
+		# Given a td.default node, identifies the header with the given text and
+		# passes this to the item extractor. (Presently, no wrapping node exists
+		# in UbuWeb's markup.)
+		def extract_addition_entries( column_node , header_xpath)
+			heading = column_node.xpath( header_xpath ).first
+			return false if heading.nil?
+			return extract_addition_items_after_heading( heading )
+		end
+
+		# FOR CENTER COLUMN:
+		# Given the center td.default node, descend into the recursively nested
+		# entries. Entry titles and descriptions are designated by title's bold
+		# link.
+		def extract_collection_entries( column_node )
+			column_node.children.each do |child_node|
+				# Font tag designates the beginning of an entry
+				if child_node.name == 'font'
+					return extract_recursive_collection_entries( child_node )
 				end
 			end
-			# Trim leading and trailing whitespace from all values
-			entry.each{ |key, value| entry[key] = value.strip }
-			return entry
+			return false
 		end
 
 		# Given a header node, loops through subsequent tags in search of <img>
@@ -143,6 +145,28 @@ class UbuParse
 			return items
 		end
 
+		def extract_addition_item_after_image( image_node )
+			anchor_node = image_node.next
+			# Fail if the subsequent node is not an <a>
+			return false if anchor_node.name != 'a'
+			entry = {
+				:artist => '',
+				:title => '',
+				:href => normalize_href( anchor_node[:href] )
+			}
+			anchor_node.children.each do |child|
+				case child.name
+				when 'text'
+					entry[:artist] << child.inner_text + ' '
+				when 'font'
+					entry[:title] << child.children.first.inner_text + ' '
+				end
+			end
+			# Trim leading and trailing whitespace from all values
+			entry.each{ |key, value| entry[key] = value.strip }
+			return entry
+		end
+
 		# Used to recursively extract the entries in the center column of UbuWeb's
 		# main page, dubbed the "Collection Entries"
 		def extract_recursive_collection_entries( font_node )
@@ -162,7 +186,12 @@ class UbuParse
 						entry_copy = font_node.clone
 						entry_copy.xpath('b').first.remove
 						entry_copy.xpath('font').remove
-						entry[:description] = entry_copy.inner_html.strip
+						# They tend to have trailing <br> tags and whitespace
+						description = entry_copy.inner_html
+						description.gsub!(/(<br\s?\/?>\s*)*$/, '')
+						description.gsub!(/^(\s*<br\s?\/?>)*/, '')
+						description.strip!
+						entry[:description] = description
 						# Append it
 						collection_entries << entry
 					end
@@ -172,29 +201,5 @@ class UbuParse
 				end
 			end
 			return collection_entries
-		end
-
-		# FOR OUTERMOST COLUMNS:
-		# Given a td.default node, identifies the header with the given text and
-		# passes this to the item extractor. (Presently, no wrapping node exists
-		# in UbuWeb's markup.)
-		def extract_addition_entries( column_node , header_xpath)
-			heading = column_node.xpath( header_xpath ).first
-			return false if heading.nil?
-			return extract_addition_items_after_heading( heading )
-		end
-
-		# FOR CENTER COLUMN:
-		# Given the center td.default node, descend into the recursively nested
-		# entries. Entry titles and descriptions are designated by title's bold
-		# link.
-		def extract_collection_entries( column_node )
-			column_node.children.each do |child_node|
-				# Font tag designates the beginning of an entry
-				if child_node.name == 'font'
-					return extract_recursive_collection_entries( child_node )
-				end
-			end
-			return false
 		end
 end

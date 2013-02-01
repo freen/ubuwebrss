@@ -9,9 +9,12 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title post.title
         
-        # Manually add description for custom HTML sanitizing
-        description = @sanitizer.clean(post.description.to_s)#, @sanitizer_level)
-        xml.item << "<description><![CDATA[" + description + "]]></description>\n"
+        description = post.description.to_s
+        unless description.empty?
+          # Manually add description for custom HTML sanitizing
+          description = @sanitizer.clean(description)
+          xml.item << "<description><![CDATA[" + description + "]]></description>\n"
+        end
 
         xml.pubDate post.created_at.to_s(:rfc822)
         xml.link post.href
