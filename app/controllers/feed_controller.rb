@@ -1,5 +1,7 @@
 class FeedController < ApplicationController
 	
+	# This controller must not use the layout
+
 	before_filter :set_sanitizer
 
 	def news

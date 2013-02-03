@@ -1,3 +1,4 @@
 class ScrapeEvent < ActiveRecord::Base
-  has_many :ubu_entry
+  attr_accessible :entries_found
+  has_many :ubu_entries
 end

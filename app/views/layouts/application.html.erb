@@ -10,7 +10,21 @@
 <body>
 	<header></header>
 	<div class="content">
-		<%= yield %>
+		<div class="content_inner">
+			<%= yield %>
+		</div>
 	</div>
+	<footer>
+		<div class="footer_inner">
+			<div class="scrape_log">
+				<h3>Scrape Log</h3>
+				<ul class="scrape_events">
+					<% @scrape_log.each do |scrape| %>
+					<li><span class="time"><%= scrape.created_at %>:</span> <span class="entries_found"><%= pluralize scrape.entries_found, 'entry' %></span></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

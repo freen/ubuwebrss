@@ -6,16 +6,79 @@ body {
 	padding: 0px;
 	margin: 0px;
 	font-family: Verdana, Arial;
-	font-size: 10px;
-	background-color: black;
+	font-size: .8em;
+	// background-color: #2F343B;
+	background-color: #7E827A; //black;
+
+}
+
+a, a:visited {
+	color: white;
+	// font-weight: bold;
+}
+
+h2 {
+	
 }
 
 header {
 	height: 200px;
 	width: 100%;
 	background: white url('/assets/giorno_header.png') no-repeat 550px top;
+	float: left;
+}
+
+footer {
+	width: 100%;
+	float: left;
+	// background-color: #7E827A; //black;
+
+	.footer_inner {
+		width: 600px;
+		margin: 0 auto;
+		display: block;
+
+		.scrape_log {
+			width: 250px;
+			padding: 20px 0;
+			float: left;
+
+			ul.scrape_events {
+				list-style: none;
+				padding: 0;
+				li {
+						font-family: monospace;
+				
+					.time {
+						font-weight: bold;
+					}
+					.entries_found {
+					}
+				}
+			}
+		}
+	}
 }
 
 .content {
-	
+	// background-color: #7E827A; //black;
+	color: white;
+	float: left;
+	width: 100%;
+
+	.content_inner {
+		width: 600px;
+		margin: 0 auto;
+		display: block;
+
+		.about, .feed_latest {
+			width: 250px;
+			padding: 20px 0;
+			float: left;
+		}
+
+		.about {
+			margin-right: 40px;
+		}
+	}
 }
