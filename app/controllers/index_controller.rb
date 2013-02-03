@@ -10,6 +10,6 @@ class IndexController < ApplicationController
 	private
 
 		def set_scrape_log
-			@scrape_log = ScrapeEvent.limit(30).order('id desc')
+			@scrape_log = ScrapeEvent.limit(5).order('id desc')
 		end
 end

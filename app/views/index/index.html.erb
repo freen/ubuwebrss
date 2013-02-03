@@ -1,19 +1,21 @@
 <div class="about">
-	<h2>About</h2>
+	<h2>UbuWeb RSS</h2>
 	<p>This website provides <%= link_to "an RSS feed", "/feed/news.rss" %> for the news items on the front page of <%= link_to "ubu.com", "http://ubu.com/" %></p>
-	<p>The feed is updated every 12 hours. <%= link_to "The code", "https://github.com/freen/ubuwebrss" %> is open source.
+	<p>The feed is updated every 12 hours. <%= link_to "The code", "https://github.com/freen/ubuwebrss" %> is open source.</p>
+	<p><a alt="RSS feed" class="rss_icon" href="/feed/news.rss"></a></p>
+
 </div>
 
 <div class="feed_latest">
-	<h2>Latest Feed Items</h2>
+	<h2>Latest Entries</h2>
 	<ul>
 		<% @latest_entries.each do |entry| %>
 		<li>
 			<article>
-				<h4><a href="<%= entry.href %>"><%= entry.title %></a></h4>
-				<div class="article_description">
+				<h3><a href="<%= entry.href %>"><%= entry.title %></a></h3>
+				<div class="article_description" title="Scraped <%= entry.created_at.strftime('%B %-d, %Y at %H:%M:%S') %>">
 					<% description = @sanitizer_full.clean(entry.description) %>
-					<%= truncate(description, :length => 160, :omission => "&mdash;").html_safe %>
+					<%= truncate(description, :length => 155, :omission => "&mdash;").html_safe %>
 				</div>
 			</article>
 		</li>
@@ -22,7 +24,7 @@
 </div>
 
 <div class="scrape_log">
-	<h3>Scrape Log</h3>
+	<h2>Scrape Log</h2>
 	<ul class="scrape_events">
 		<% @scrape_log.each do |scrape| %>
 		<li><span class="time"><%= scrape.created_at %>:</span> <span class="entries_found"><%= pluralize scrape.entries_found, 'entry' %></span></li>
