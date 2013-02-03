@@ -6,6 +6,7 @@ common: &common
 development:
   <<: *common
   database: ubuwebrss_devel
+  password: '}%<-m4,q%WP"oD<P%xS,'
 
 test:
   <<: *common
