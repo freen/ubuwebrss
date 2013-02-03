@@ -12,7 +12,7 @@ xml.rss :version => "2.0" do
         description = post.description.to_s
         unless description.empty?
           # Manually add description for custom HTML sanitizing
-          description = @sanitizer.clean(description)
+          description = @sanitizer_basic.clean(description)
           xml << " " * 6
           xml << "<description><![CDATA[" + description + "]]></description>\n"
         end

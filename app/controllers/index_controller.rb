@@ -4,12 +4,12 @@ class IndexController < ApplicationController
 
 	def index
 		do_scrape
-		# abort 
+		@latest_entries = UbuEntry.limit(5).order('id desc')
 	end
 
 	private
 
 		def set_scrape_log
-			@scrape_log = ScrapeEvent.limit(10).order('id desc')
+			@scrape_log = ScrapeEvent.limit(30).order('id desc')
 		end
 end

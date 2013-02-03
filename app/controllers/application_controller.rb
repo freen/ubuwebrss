@@ -1,12 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-	before_filter :set_hostname
+	before_filter :set_hostname, :set_sanitizers
 
 	private
+	
 		def set_hostname
 			@hostname = request.env["REQUEST_URI"]
 		end	
+
+		def set_sanitizers
+			# For the feed
+			sanitize_config = Sanitize::Config::BASIC
+			# No need for nofollow
+			sanitize_config[:add_attributes]["a"].delete('rel')
+			@sanitizer_basic = Sanitize.new(sanitize_config)
+
+			# For the home page (leaves only text behind)
+			@sanitizer_full = Sanitize.new
+		end
 
 		def scheduled_scrape_is_due
 			last_scrape = ScrapeEvent.last

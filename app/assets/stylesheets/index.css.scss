@@ -1,25 +1,12 @@
-// Place all the styles related to the index controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 body {
 	padding: 0px;
 	margin: 0px;
 	font-family: Verdana, Arial;
 	font-size: .8em;
-	// background-color: #2F343B;
-	background-color: #7E827A; //black;
-
+	background-color: #7E827A;
 }
 
-a, a:visited {
-	color: white;
-	// font-weight: bold;
-}
-
-h2 {
-	
-}
+a, a:visited { color: white; }
 
 header {
 	height: 200px;
@@ -28,40 +15,14 @@ header {
 	float: left;
 }
 
-footer {
-	width: 100%;
-	float: left;
-	// background-color: #7E827A; //black;
-
-	.footer_inner {
-		width: 600px;
-		margin: 0 auto;
-		display: block;
-
-		.scrape_log {
-			width: 250px;
-			padding: 20px 0;
-			float: left;
-
-			ul.scrape_events {
-				list-style: none;
-				padding: 0;
-				li {
-						font-family: monospace;
-				
-					.time {
-						font-weight: bold;
-					}
-					.entries_found {
-					}
-				}
-			}
-		}
-	}
+ul {
+	list-style: none;
+	padding: 0;
 }
 
+h2 { color: black; }
+
 .content {
-	// background-color: #7E827A; //black;
 	color: white;
 	float: left;
 	width: 100%;
@@ -70,15 +31,44 @@ footer {
 		width: 600px;
 		margin: 0 auto;
 		display: block;
-
-		.about, .feed_latest {
-			width: 250px;
-			padding: 20px 0;
-			float: left;
-		}
+		padding: 20px 0;
 
 		.about {
+			float: left;
+			width: 250px;
 			margin-right: 40px;
 		}
+
+		.scrape_log {
+			width: 250px;
+			float: left;
+			color: black;
+
+			ul.scrape_events li {
+				font-family: monospace;
+
+				.time { font-weight: bold; }
+			}
+		}
+
+		.feed_latest {
+			float: right;
+			width: 300px;
+			h4 {
+				margin-bottom: 3px;
+				font-weight: normal;
+			}
+		}
+	}
+}
+
+footer {
+	width: 100%;
+	float: left;
+
+	.footer_inner {
+		width: 600px;
+		margin: 0 auto;
+		display: block;
 	}
 }

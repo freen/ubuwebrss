@@ -3,6 +3,29 @@
 	<p>This website provides <%= link_to "an RSS feed", "/feed/news.rss" %> for the news items on the front page of <%= link_to "ubu.com", "http://ubu.com/" %></p>
 	<p>The feed is updated every 12 hours. <%= link_to "The code", "https://github.com/freen/ubuwebrss" %> is open source.
 </div>
+
 <div class="feed_latest">
 	<h2>Latest Feed Items</h2>
+	<ul>
+		<% @latest_entries.each do |entry| %>
+		<li>
+			<article>
+				<h4><a href="<%= entry.href %>"><%= entry.title %></a></h4>
+				<div class="article_description">
+					<% description = @sanitizer_full.clean(entry.description) %>
+					<%= truncate(description, :length => 160, :omission => "&mdash;").html_safe %>
+				</div>
+			</article>
+		</li>
+		<% end %>
+	</ul>
 </div>
+
+<div class="scrape_log">
+	<h3>Scrape Log</h3>
+	<ul class="scrape_events">
+		<% @scrape_log.each do |scrape| %>
+		<li><span class="time"><%= scrape.created_at %>:</span> <span class="entries_found"><%= pluralize scrape.entries_found, 'entry' %></span></li>
+		<% end %>
+	</ul>
+</div>	
