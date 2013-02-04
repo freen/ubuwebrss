@@ -1,0 +1,16 @@
+common: &common
+  adapter: sqlite3
+
+development:
+  <<: *common
+  database: db/development.sqlite3
+
+test:
+  <<: *common
+  database: db/test.sqlite3
+
+production:
+  adapter: mysql
+  username: ubuwebrss
+  password: '}%<-m4,q%WP"oD<P%xS,'
+  database: ubuwebrss_prod

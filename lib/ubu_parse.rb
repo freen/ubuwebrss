@@ -100,6 +100,10 @@ class UbuParse
 			return uri.to_s
 		end
 
+		def prepare_entry_title( title )
+			title.gsub("\n", '').strip
+		end
+
 		# FOR OUTERMOST COLUMNS:
 		# Given a td.default node, identifies the header with the given text and
 		# passes this to the item extractor. (Presently, no wrapping node exists
@@ -162,8 +166,9 @@ class UbuParse
 					entry[:title] << child.children.first.inner_text + ' '
 				end
 			end
-			# Trim leading and trailing whitespace from all values
-			entry.each{ |key, value| entry[key] = value.strip }
+			# Trim  whitespace
+			entry[:title] = prepare_entry_title( entry[:title] )
+			[:artist, :href].each{ |key| entry[key].strip! }
 			return entry
 		end
 
@@ -180,7 +185,7 @@ class UbuParse
 					if title_anchor and title_anchor.name == 'a'
 						# Put together the new entry
 						entry = entry_template.clone
-						entry[:title] = title_anchor.inner_text.strip
+						entry[:title] = prepare_entry_title( title_anchor.inner_text )
 						entry[:href] = normalize_href( title_anchor[:href] )
 						# Prep the description
 						entry_copy = font_node.clone
