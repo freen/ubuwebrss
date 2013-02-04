@@ -27,7 +27,7 @@
 	<h2>Scrape Log</h2>
 	<ul class="scrape_events">
 		<% @scrape_log.each do |scrape| %>
-		<li><span class="time"><%= scrape.created_at %>:</span> <span class="entries_found"><%= pluralize scrape.entries_found, 'entry' %></span></li>
+		<li><span class="time"><%= scrape.created_at %>:</span> <span class="entries_found"><%= pluralize scrape.ubu_entries_count, 'entry' %></span></li>
 		<% end %>
 	</ul>
 </div>	
