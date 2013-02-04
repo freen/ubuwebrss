@@ -22,7 +22,7 @@ ul {
 	padding: 0;
 }
 
-h2 { color: $gray; }
+h2, h3, h4 { color: $gray; }
 
 .content {
 	color: white;
@@ -51,8 +51,16 @@ h2 { color: $gray; }
 		}
 
 		.scrape_log {
-			ul.scrape_events li {
-				font-family: monospace;
+			ul.scrape_events {
+				li.log_entry {
+					font-family: monospace;
+					time { color: lightGray;}
+				}
+				li.log_header {
+					h4 {
+						margin-bottom: 6px;
+					}
+				}
 			}
 		}
 
