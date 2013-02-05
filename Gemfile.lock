@@ -116,7 +116,7 @@ DEPENDENCIES
   activerecord-mysql-adapter
   coffee-rails (~> 3.2.1)
   jquery-rails
-  mysql2 (< 0.3)
+  mysql2
   nokogiri
   rails (= 3.2.11)
   sanitize

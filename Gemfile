@@ -6,11 +6,11 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-	gem 'sqlite3'
+  gem 'sqlite3'
 end
 group :production do
-	gem 'mysql2', '< 0.3'
-	gem 'activerecord-mysql-adapter'
+  gem 'mysql2'
+  gem 'activerecord-mysql-adapter'
 end
 
 
