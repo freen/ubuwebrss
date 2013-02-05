@@ -4,7 +4,7 @@ class FeedController < ApplicationController
 
 	def news
 		do_scrape
-	    @posts = UbuEntry.all(:order => "created_at DESC", :limit => 400)
+	    @posts = UbuEntry.all(:order => "id DESC", :limit => 400)
 	    render :layout => false, :content_type => Mime::RSS
 	end
 
