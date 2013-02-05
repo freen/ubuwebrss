@@ -9,7 +9,7 @@ group :development, :test do
 	gem 'sqlite3'
 end
 group :production do
-	gem 'mysql'
+	gem 'mysql2', '< 0.3'
 	gem 'activerecord-mysql-adapter'
 end
 
