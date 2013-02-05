@@ -25,6 +25,7 @@
 
 <div class="scrape_log">
 	<h2>Scrape Log</h2>
+	<% unless @log_last_scrape.nil? %>
 	<ul class="scrape_events">
 		<li class="log_header"><h4>Last Scrape</h4></li>
 		<li class="log_entry"><time><%= @log_last_scrape.created_at %>:</time> <span class="entries_found"><%= pluralize @log_last_scrape.ubu_entries_count, 'new entry' %></span></li>
@@ -33,4 +34,5 @@
 		<li class="log_entry"><time><%= scrape.created_at %>:</time> <span class="entries_found"><%= pluralize scrape.ubu_entries_count, 'new entry' %></span></li>
 		<% end %>
 	</ul>
+	<% end %>
 </div>	
