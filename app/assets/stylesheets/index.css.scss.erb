@@ -13,7 +13,7 @@ a, a:visited { color: white; }
 header {
 	height: 200px;
 	width: 100%;
-	background: white url('/assets/giorno_header.png') no-repeat 550px top;
+	background: white url(<%= asset_path 'giorno_header.png' %>) no-repeat 550px top;
 	float: left;
 }
 
@@ -44,7 +44,7 @@ h2, h3, h4 { color: $gray; }
 		.about {
 			a.rss_icon {
 			  	display: inline-block;
-			  	background: url("/assets/feed-icon-14x14.png") no-repeat top left;
+			  	background: url(<%= asset_path 'feed-icon-14x14.png' %>) no-repeat top left;
 			  	height: 14px;
 			  	width: 14px;
 			}
