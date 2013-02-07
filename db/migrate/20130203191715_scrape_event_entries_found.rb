@@ -4,8 +4,8 @@ class ScrapeEventEntriesFound < ActiveRecord::Migration
 
       ScrapeEvent.reset_column_information
       ScrapeEvent.find(:all).each do |scrape|
-      	ScrapeEvent.update_counters scrape.id, :ubu_entries_count => scrape.ubu_entries.size
-      	scrape.save
+        ScrapeEvent.update_counters scrape.id, :ubu_entries_count => scrape.ubu_entries.size
+        scrape.save
       end
   end
 

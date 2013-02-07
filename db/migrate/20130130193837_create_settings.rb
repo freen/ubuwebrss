@@ -10,8 +10,8 @@ class CreateSettings < ActiveRecord::Migration
 
     add_index :settings, [:key], {:unique => true}
 
-    Setting.create 	:key => 'scrape_interval_minutes',
-    				:label => 'Scrape Interval (Minutes)',
-    				:value => '720' # 12 hours
+    Setting.create :key => 'scrape_interval_minutes',
+            :label => 'Scrape Interval (Minutes)',
+            :value => '720' # 12 hours
   end
 end

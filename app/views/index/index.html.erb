@@ -1,43 +1,43 @@
 <div class="about">
-	<h2>UbuWeb RSS</h2>
-	<p>This website provides <%= link_to "an RSS feed", "/feed/news.rss" %> for the news items on the front page of <%= link_to "ubu.com", "http://ubu.com/" %>.</p>
-	<p>The feed is updated every 12 hours. <%= link_to "The code", "https://github.com/freen/ubuwebrss" %> is open source.</p>
-	<p><a alt="RSS feed" class="rss_icon" href="/feed/news.rss"></a></p>
+  <h2>UbuWeb RSS</h2>
+  <p>This website provides <%= link_to "an RSS feed", "/feed/news.rss" %> for the news items on the front page of <%= link_to "ubu.com", "http://ubu.com/" %>.</p>
+  <p>The feed is updated every 12 hours. <%= link_to "The code", "https://github.com/freen/ubuwebrss" %> is open source.</p>
+  <p><a alt="RSS feed" class="rss_icon" href="/feed/news.rss"></a></p>
 
 </div>
 
 <div class="feed_latest">
-	<h2>Latest Entries</h2>
-	<ul>
-		<% @latest_entries.each do |entry| %>
-		<li>
-			<article>
-				<h3>
-					<a href="<%= entry.href %>"><%= entry.title %></a>
-					<span class="artist">&mdash; <%= entry.artist %></span>
-				</h3>
-				<div class="article_description" title="Scraped <%= entry.created_at.strftime('%B %-d, %Y at %H:%M:%S') %>">
-					<% unless entry.description.nil? %>
-					<% description = @sanitizer_full.clean(entry.description) %>
-					<%= truncate(description, :length => 155, :omission => "&mdash;").html_safe %>
-					<% end %>
-				</div>
-			</article>
-		</li>
-		<% end %>
-	</ul>
+  <h2>Latest Entries</h2>
+  <ul>
+    <% @latest_entries.each do |entry| %>
+    <li>
+      <article>
+        <h3>
+          <a href="<%= entry.href %>"><%= entry.title %></a>
+          <span class="artist">&mdash; <%= entry.artist %></span>
+        </h3>
+        <div class="article_description" title="Scraped <%= entry.created_at.strftime('%B %-d, %Y at %H:%M:%S') %>">
+          <% unless entry.description.nil? %>
+          <% description = @sanitizer_full.clean(entry.description) %>
+          <%= truncate(description, :length => 155, :omission => "&mdash;").html_safe %>
+          <% end %>
+        </div>
+      </article>
+    </li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="scrape_log">
-	<h2>Scrape Log</h2>
-	<% unless @log_last_scrape.nil? %>
-	<ul class="scrape_events">
-		<li class="log_header"><h4>Last Scrape</h4></li>
-		<li class="log_entry"><time><%= @log_last_scrape.created_at %>:</time> <span class="entries_found"><%= pluralize @log_last_scrape.ubu_entries_count, 'new entry' %></span></li>
-		<li class="log_header"><h4>Last Entries Found</h4></li>
-		<% @log_recent_scrapes_with_entries.each do |scrape| %>
-		<li class="log_entry"><time><%= scrape.created_at %>:</time> <span class="entries_found"><%= pluralize scrape.ubu_entries_count, 'new entry' %></span></li>
-		<% end %>
-	</ul>
-	<% end %>
-</div>	
+  <h2>Scrape Log</h2>
+  <% unless @log_last_scrape.nil? %>
+  <ul class="scrape_events">
+    <li class="log_header"><h4>Last Scrape</h4></li>
+    <li class="log_entry"><time><%= @log_last_scrape.created_at %>:</time> <span class="entries_found"><%= pluralize @log_last_scrape.ubu_entries_count, 'new entry' %></span></li>
+    <li class="log_header"><h4>Last Entries Found</h4></li>
+    <% @log_recent_scrapes_with_entries.each do |scrape| %>
+    <li class="log_entry"><time><%= scrape.created_at %>:</time> <span class="entries_found"><%= pluralize scrape.ubu_entries_count, 'new entry' %></span></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>  
