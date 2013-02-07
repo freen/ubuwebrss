@@ -6,6 +6,7 @@ xml.rss :version => "2.0", 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/' do
     xml.link 'http://www.ubu.com'
     xml.language 'en-US'
     xml.lastBuildDate @rss_values[:last_build_date]
+    xml.ttl @rss_values[:ttl]
 
     for post in @posts
       xml.item do

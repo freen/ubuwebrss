@@ -21,7 +21,8 @@ class FeedController < ApplicationController
       end
 
       @rss_values = {
-        :last_build_date => last_build_date
+        :last_build_date => last_build_date,
+        :ttl => Setting::getIntegerValue('scrape_interval_minutes')
       }
     end
 
