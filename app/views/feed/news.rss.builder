@@ -4,6 +4,8 @@ xml.rss :version => "2.0", 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/' do
     xml.title "UbuWeb"
     xml.description "UbuWeb is a completely independent resource dedicated to all strains of the avant-garde, ethnopoetics, and outsider arts."
     xml.link 'http://www.ubu.com'
+    xml.language 'en-US'
+    xml.lastBuildDate @rss_values[:last_build_date]
 
     for post in @posts
       xml.item do
