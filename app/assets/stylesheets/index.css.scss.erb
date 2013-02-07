@@ -68,14 +68,20 @@ h2, h3, h4 { color: $gray; }
 			float: right;
 			width: 430px;
 			article {
+				padding-bottom: 7px;
 				h3 {
 					margin-bottom: 3px;
 					font-weight: bold;
+					font-style: italic;
 					a {
+						&:hover { text-decoration: underline; }
 						color: $gray;
 						text-decoration: none;
 					}
-					a:hover { text-decoration: underline; }
+					.artist {
+						color: lightgray;
+						padding-top: 0;
+					}
 				}
 				.article_description { color: white; }
 				time {
