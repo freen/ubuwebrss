@@ -11,6 +11,6 @@ class IndexController < ApplicationController
 
     def set_scrape_log
       @log_last_scrape = ScrapeEvent.last
-      @log_recent_scrapes_with_entries = ScrapeEvent::get_last_with_entries
+      @log_last_scrape_with_entries = ScrapeEvent::get_last_with_entries
     end
 end
