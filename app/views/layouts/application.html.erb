@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag(:rss, @hostname + "feed/news.rss") %>
+  <meta name="description" content="A service which regularly scrapes UbuWeb (ubu.com) and creates an RSS feed of the news items on UbuWeb's main page.">
 </head>
 <body>
   <header></header>
