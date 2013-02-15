@@ -14,11 +14,11 @@
       <article>
         <h3>
           <a href="<%= entry.href %>"><%= entry.title %></a>
-          <% unless entry.artist.nil? %>
-          <span class="artist">&mdash; <%= entry.artist %></span>
-          <% end %>
         </h3>
         <div class="article_description" title="Scraped <%= entry.created_at.strftime('%B %-d, %Y at %H:%M:%S') %>">
+          <% unless entry.artist.nil? %>
+          <span class="artist"><%= entry.artist %></span>
+          <% end %>
           <% unless entry.description.nil? %>
           <% description = @sanitizer_full.clean(entry.description) %>
           <%= truncate(description, :length => 155, :omission => "&mdash;").html_safe %>
